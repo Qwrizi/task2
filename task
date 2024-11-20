@@ -1,0 +1,191 @@
+1: #include <iostream>
+using namespace std;
+int main() {
+    double a, b, c;
+    cin >> a >> b >> c;
+    if (a + b > c && a + c > b && b + c > a) {
+        cout << "Треугольник существует." << endl;
+        if (a == b && b == c) {
+            cout << "Равносторонний." << endl;
+        } else if (a == b || b == c || a == c) {
+            cout << "Равнобедренный." << endl;
+        } else {
+            cout << "Разносторонний." << endl;
+        }
+    } else {
+        cout << "Треугольник не существует." << endl;
+    }
+    return 0;
+}
+2: #include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    double a, b, c;
+    cin >> a >> b >> c;
+    if (a + b > c && a + c > b && b + c > a) {
+        double max_side = max(a, max(b, c));
+        double sum_of_squares = a * a + b * b + c * c;
+        if (max_side * max_side < sum_of_squares) {
+            cout << "Остроугольный." << endl;
+        } else if (max_side * max_side == sum_of_squares) {
+            cout << "Прямоугольный." << endl;
+        } else {
+            cout << "Тупоугольный." << endl;
+        }
+    } else {
+        cout << "Треугольник не существует." << endl;
+    }
+    return 0;
+}
+3: #include <iostream>
+#include <cmath>
+using namespace std;
+double distance(double x1, double y1, double x2, double y2) {
+    return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+int main() {
+    double xa, ya, xb, yb, xc, yc;
+    cin >> xa >> ya >> xb >> yb >> xc >> yc;
+    double a = distance(xb, yb, xc, yc);
+    double b = distance(xa, ya, xc, yc);
+    double c = distance(xa, ya, xb, yb);
+    if (a + b > c && a + c > b && b + c > a) {
+        double max_side = max(a, max(b, c));
+        double sum_of_squares = a * a + b * b + c * c;
+        if (max_side * max_side < sum_of_squares) {
+            cout << "Остроугольный." << endl;
+        } else if (max_side * max_side == sum_of_squares) {
+            cout << "Прямоугольный." << endl;
+        } else {
+            cout << "Тупоугольный." << endl;
+        }
+    } else {
+        cout << "Треугольник не существует." << endl;
+    }
+    return 0;
+}
+4: #include <iostream>
+using namespace std;
+int main() {
+    double a, b, c;
+    cin >> a >> b >> c;
+    for (double x = 1; x < 100; x++) {
+        for (double y = 1; y < 100; y++) {
+            double z = a - x - y;
+            if (z > 0 && b == y + z && c == x + z) {
+                cout << "Стороны могут образовать треугольник." << endl;
+                return 0;
+            }
+        }
+    }
+    cout << "Стороны не могут образовать треугольник." << endl;
+    return 0;
+}
+5: #include <iostream>
+#include <cmath>
+using namespace std;
+double distance(double x1, double y1, double x2, double y2) {
+    return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+int main() {
+    double xa, ya, xb, yb, xc, yc, xd, yd;
+    cin >> xa >> ya >> xb >> yb >> xc >> yc >> xd >> yd;
+    double ab = distance(xa, ya, xb, yb);
+    double bc = distance(xb, yb, xc, yc);
+    double cd = distance(xc, yc, xd, yd);
+    double da = distance(xd, yd, xa, ya);
+    if (fabs(ab * cd + bc * da) < 1e-9) {
+        cout << "Прямоугольник." << endl;
+    } else if (fabs(ab - cd) < 1e-9 && fabs(bc - da) < 1e-9) {
+        cout << "Параллелограмм." << endl;
+    } else if ((xa == xb && xc == xd) || (ya == yb && yc == yd)) {
+        cout << "Трапеция." << endl;
+    } else {
+        cout << "Произвольный четырехугольник." << endl;
+    }
+    return 0;
+}
+6: #include <iostream>
+#include <algorithm>
+using namespace std;
+int main() {
+    double a, b, c;
+    double r, s;
+    cin >> a >> b >> c;
+    cin >> r >> s;
+    double brick[3] = {a, b, c};
+    double hole[2] = {r, s};
+    sort(brick, brick + 3);
+    sort(hole, hole + 2);
+    if (brick[0] <= hole[0] && brick[1] <= hole[1]) {
+        cout << "Кирпич пройдет через отверстие." << endl;
+    } else {
+        cout << "Кирпич не пройдет через отверстие." << endl;
+    }
+    return 0;
+}
+7: #include <iostream>
+#include <algorithm>
+using namespace std;
+int main() {
+    double r;
+    double p, q;
+    cin >> r;
+    cin >> p >> q;
+    double halfDiagonal1 = p / 2.0;
+    double halfDiagonal2 = q / 2.0;
+    double inscribedRadius = min(halfDiagonal1, halfDiagonal2);
+    if (r <= inscribedRadius) {
+        cout << "Шар пройдет через ромбообразное отверстие." << endl;
+    } else {
+        cout << "Шар не пройдет через ромбообразное отверстие." << endl;
+    }
+    return 0;
+}
+8: #include <iostream>
+#include <algorithm>
+using namespace std;
+int main() {
+    double A, B, C;
+    double R, S, T;
+    cin >> A >> B >> C;
+    cin >> R >> S >> T;
+    double box[3] = {A, B, C};
+    double package[3] = {R, S, T};
+    sort(box, box + 3);
+    sort(package, package + 3);
+    if (package[0] <= box[0] && package[1] <= box[1] && package[2] <= box[2]) {
+        cout << "Посылка помещается в коробку." << endl;
+    } else {
+        cout << "Посылка не помещается в коробку." << endl;
+    }
+    return 0;
+}
+9:   #include <iostream>
+using namespace std;
+int main() {
+    int k, l, m;
+    cin >> k >> l >> m;
+    if (k % l == 0) cout << k << " кратно " << l << endl;
+    if (k % m == 0) cout << k << " кратно " << m << endl;
+    if (l % k == 0) cout << l << " кратно " << k << endl;
+    if (l % m == 0) cout << l << " кратно " << m << endl;
+    if (m % k == 0) cout << m << " кратно " << k << endl;
+    if (m % l == 0) cout << m << " кратно " << l << endl;
+    return 0;
+}
+10: #include <iostream>
+using namespace std;
+int main() {
+    int number;
+    cin >> number;
+    int sumOfDigits = (number / 100) + ((number / 10) % 10) + (number % 10);
+    if (sumOfDigits % 3 == 0) {
+        cout << number << " делится на 3." << endl;
+    } else {
+        cout << number << " не делится на 3." << endl;
+    }
+    return 0;
+}
+
